@@ -1,6 +1,6 @@
 from setuptools import setup
 
-exec (open('djangofy/version.py').read())
+exec (open('delightfulsoup/version.py').read())
 
 setup(name='djangofy',
       version=__version__,
