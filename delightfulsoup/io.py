@@ -43,7 +43,7 @@ def load_json(path_json):
     """
     """
 
-    with open(file_json) as f:
+    with open(path_json) as f:
         return _json.load(f)
 
 
