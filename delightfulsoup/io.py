@@ -43,11 +43,16 @@ def load_json(path_json):
     """
     """
 
-    with open(path_json) as f:
+    with open(path_json, 'r') as f:
         return _json.load(f)
 
 
-def dump_json():
+def dump_json(json, path_json, indent=4):
     """
     """
-    pass
+    with open(path_json, 'wb') as f:
+        _json.dump(json, f, indent=indent)
+        f.write("\n")
+
+
+# add http://www.lifl.fr/~riquetd/parse-a-json-file-with-comments.html

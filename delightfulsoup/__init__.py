@@ -9,7 +9,7 @@ from io import (
     load_soup,
     dump_soup,
     load_json,
-    dump_soup
+    dump_json
 )
 
 from translate import (
