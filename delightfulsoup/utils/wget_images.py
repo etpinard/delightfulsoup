@@ -12,7 +12,8 @@ import shortcuts as _shc
 # -------------------------------------------------------------------------------
 
 
-def wget_images(imgs, dir_download,
+def wget_images(imgs,
+                dir_download='wget-images',
                 dir_publish=False,
                 img_src_map=dict(),
                 custom_img_name=False,
@@ -26,6 +27,10 @@ def wget_images(imgs, dir_download,
     http = ('https://', 'http://')
 
     img_i = 0  # init image counter
+
+    # Make download, if needed
+    if not _os.path.exists(dir_download):
+        _os.makedirs(dir_download)
 
     # If not dir_publish given, set it to dir_download
     if not dir_publish:
