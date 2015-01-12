@@ -60,9 +60,10 @@ def translate(nodes, astr, translator,
         for phrase in translator.keys():
             if method == 're':
                 re.sub(phrase, translator[phrase])
+                break
             elif getattr(attr, method)(phrase):
                 node[astr] = attr.replace(phrase, translator[phrase])
-            break
+                break
 
         # Convert google redirects
         if translate_href_google:
