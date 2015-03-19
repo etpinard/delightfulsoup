@@ -1,9 +1,12 @@
 import delightfulsoup as ds
 import os
 
-PUBLISHED = 'published/'  # path to published files!
+PATH = './examples/ipython-notebook/'
 
-soup = ds.load_soup('notebook.html')  # get HTML soup!
+PUBLISHED = PATH + 'published/'  # path to published files!
+IMAGES = PATH + 'images/'
+
+soup = ds.load_soup(PATH + 'notebook.html')  # get HTML soup!
 
 
 # Download image(s) from online source and translate 'src'
@@ -17,9 +20,8 @@ def custom_img_name(img_src, img_i):
 def img_alt(img_src, img_i):
     return 'IPython Notebook - {img_i}'.format(img_i=img_i)
 
-
 imgs = soup.findAll('img')
-ds.utils.wget_images(imgs, PATH + 'images',
+ds.utils.wget_images(imgs, IMAGES,
                      translate_src=True,
                      custom_img_name=custom_img_name,
                      img_alt=img_alt)
