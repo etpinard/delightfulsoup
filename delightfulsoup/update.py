@@ -33,12 +33,14 @@ def add_attr(node, attr_dict):
     try:
         attr_current = node[astr]
     except KeyError:
-        attr_current = []
+        attr_current = None
 
     #
     for attr in attrs:
-        if attr not in attr_current:
-            node[astr] = attr_current + [attr]
+        if attr_current is None:
+            node[astr] = attr
+        elif attr not in attr_current:
+            node[astr] = ' - '.join([attr_current, attr])
 
 
 def insert_inside_nodes(nodes, tag,
