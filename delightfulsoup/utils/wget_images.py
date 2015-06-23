@@ -5,6 +5,7 @@ utils.wget_images
 """
 import urllib as _urllib
 import os as _os
+import shutil as _shutil
 
 import delightfulsoup as _ds
 import shortcuts as _shc
@@ -13,6 +14,7 @@ import shortcuts as _shc
 
 
 def wget_images(imgs,
+                dir_root=_os.system('pwd'),
                 dir_download='wget-images',
                 dir_publish=False,
                 img_src_map=dict(),
@@ -48,8 +50,7 @@ def wget_images(imgs,
 
         # Skip if raw png, or already in map dict
         if (not img_src.startswith(png_raw)
-                and img_src not in img_src_map.keys()
-                and img_src.startswith(http)):
+                and img_src not in img_src_map.keys()):
 
             img_i += 1
 
@@ -62,9 +63,14 @@ def wget_images(imgs,
             else:
                 img_name = _get_img_name(img_src, img_i)
 
-            # Download it
             img_download_path = _os.path.join(dir_download, img_name)
-            _urllib.urlretrieve(img_src, img_download_path)
+
+            # Download it
+            if img_src.startswith(http):
+                _urllib.urlretrieve(img_src, img_download_path)
+            else:
+                img_src_full = _os.path.join(dir_root, img_src)
+                _shutil.copy2(img_src_full, img_download_path)
 
             # Add map to img_src_map
             img_publish_path = _os.path.join(dir_publish, img_name)
