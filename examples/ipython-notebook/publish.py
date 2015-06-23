@@ -21,7 +21,9 @@ def img_alt(img_src, img_i):
     return 'IPython Notebook - {img_i}'.format(img_i=img_i)
 
 imgs = soup.findAll('img')
-ds.utils.wget_images(imgs, IMAGES,
+ds.utils.wget_images(imgs,
+                     dir_root=PATH,
+                     dir_download=IMAGES,
                      translate_src=True,
                      custom_img_name=custom_img_name,
                      img_alt=img_alt)
