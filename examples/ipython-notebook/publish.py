@@ -4,7 +4,7 @@ import os
 PATH = './examples/ipython-notebook/'
 
 PUBLISHED = PATH + 'published/'  # path to published files!
-IMAGES = PATH + 'images/'
+IMAGES = PUBLISHED + 'images/'
 
 soup = ds.load_soup(PATH + 'notebook.html')  # get HTML soup!
 
